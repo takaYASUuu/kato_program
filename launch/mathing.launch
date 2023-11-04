@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="kato_program" type="matching" name="matching" output="screen"/>
+    <rosparam command="load" file="$(find kato_program)/config/params.yaml" />
+    
+    <!--- Run Rviz-->
+    <include file="$(find kato_program)/launch/include/module_rviz.launch" />
+</launch>

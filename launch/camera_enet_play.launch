@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="kato_program" type="camera_enet_play" name="camera_enet_play" output="screen"/>
+    <rosparam command="load" file="$(find kato_program)/config/params.yaml" />
+</launch>

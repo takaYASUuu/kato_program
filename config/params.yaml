@@ -1,0 +1,88 @@
+#member_list:
+camera_image_imput: "camera1" #camera topic (you should change)
+camera_image_imput_compress: "camera_center_image_compressed"
+pointcloud_imput: "velodyne_points" #velodyne pointcloud topic (you should change)
+labeled_pointcloud_name: "kato_labeled_pointcloud"
+labeled_pointcloud_pass_filtered_name: "kato_labeled_pointcloud_pass_filtered"
+global_labeled_pointcloud: "kato_global_pointcloud"
+trajectory_topic: "kato_trajectory"
+position_index_topic: "position_index"
+original_width: 1920.0 #変更する前の画像サイズ（横）1920.0推奨
+original_height: 1020.0 #変更する前の画像サイズ（縦）1020.0推奨
+resized_width: 512.0 #変更したあとの画像サイズ（横）512.0推奨
+resized_height: 256.0 #変更したあとの画像サイズ（縦）256.0推奨
+#caffeのモデルなどのセット
+#caffe_model_path: "/home/nvidia/catkin_ws/src/kato_program/model/bn_conv_merged_model_5label2.prototxt"
+#caffe_weights_path: "/home/nvidia/catkin_ws/src/kato_program/model/bn_conv_merged_weights_5label2.caffemodel"
+caffe_lut_path: "/home/nvidia/catkin_ws/src/kato_program/model/color.png"
+show_image: 0 #1なら認識結果を表示,0なら非表示
+show_compressed_image: 1 #1なら圧縮されてから解凍された認識結果を表示,0なら非表示
+count_time: 0 #1なら計算時間を表示,0なら計算時間を非表示
+camera_number: 0 #0,2,4,6,,,のうちどれかでカメラ起動
+compress_quality: 80 #画像の圧縮レベル 0~100 一般的には50~80
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [ 2123.211226,     0.     ,   967.983850,
+             0.     ,  2122.000965,   613.684195,
+             0.     ,     0.     ,     1.000000  ]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [-0.621467, 0.332201, -0.011843, 0.000506, 0.000000]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+projection_matrix:
+  rows: 3
+  cols: 3
+  data: [ 1806.401733,     0.     ,   971.930784,
+             0.     ,  2038.634521,   616.249276,
+             0.     ,     0.     ,     1.     ]
+extrinsic_matrix:
+  rows: 4
+  cols: 4
+  data: [1.0, 0.0, 0.0, 0.0,
+  0.0, 1.0, 0.0, 0.0,
+  0.0, 0.0, 1.0, 0.0,
+  0.0, 0.0, 0.0, 1.0]
+  #data: [-0.0291606474509330, -0.00385103312928625, 0.999567319485826, 0.0,
+  #-0.999524600740403, 0.0101279769233354, -0.0291203811475489, 0.0,
+  #-0.0100114511925360, -0.999941295090506, -0.00414454071544050, 0.0,
+  #0.147776431666902, -0.12.5848507213185, 0.208246687207254, 1.0]
+#offset_parameter: [-0.8, 0.0, -4.3, -100.6, 1.3, 89.5] #なしのとき反転してるけどいい結果
+#offset_parameter: [-1.9, 0.3, -4.3, -189.6, 0.3, 89.5] #自分のコード
+#offset_parameter: [-1.1, 0, -0.4, -180.6, 0.3, 90.5] #自分のコードtmo
+offset_parameter: [0.1, 2.95, -0.65, -180.5, 0.3, 90.5] #自分のコードtmo ただし、eigenの定義変更
+
+
+depth_filter_min: 4.0
+depth_filter_max: 100.0
+
+pointcloud_pass_through_x: 8.0
+pointcloud_pass_through_y_min: 6.0
+pointcloud_pass_through_y_max: 30.0
+save_distance_square: 4.0
+save_pcd_directory: "/home/nvidia/catkin_ws/src/kato_program/map/save_tmp/p_cloud_binary.pcd"
+
+filter_label_flg: 2 #0は何もフィルターしない 1は直進路、分岐路、草地を残す 2は直進路、分岐路を残す
+
+max_vector_size: 20 #x*2[m]分のデータを格納する
+filter_range: 3.0 #trajectoryからどれくらい近い半径まで取り出すか
+look_far_range: 40 #どれだけ先まで見るか 60ならば6m先
+
+vr0_control: 1.5
+K2_control: 0.1
+K3_control: 0.2
+
+point_vk:
+  rows: 5
+  cols: 4
+  data: [0, 3.0, 0.1, 0.2,
+         520, 2.0, 0.1, 0.2,
+         660, 4.5, 0.05, 0.1,
+         1320, 2.0, 0.1, 0.2,
+         1490, 3.0, 0.1, 0.2]
+

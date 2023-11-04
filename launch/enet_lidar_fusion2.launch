@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="kato_program" type="enet_lidar_fusion2" name="enet_lidar_fusion2" output="screen"/>
+    <rosparam command="load" file="$(find kato_program)/config/params.yaml" />
+</launch>

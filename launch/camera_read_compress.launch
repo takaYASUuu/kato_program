@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="kato_program" type="camera_read_compress" name="camera_read_compress"/>
+    <node pkg="kato_program" type="sub_compressed_image" name="sub_compressed_image" output="screen"/>
+    <rosparam command="load" file="$(find kato_program)/config/params.yaml" />
+</launch>

@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="kato_program" type="camera_read" name="camera_read"/>
+    <rosparam command="load" file="$(find kato_program)/config/params.yaml" />
+
+    <node pkg="kato_program" type="enet_lidar_fusion2_with_odometry_filtered" name="enet_lidar_fusion2_with_odometry_filtered"/>
+    <rosparam command="load" file="$(find kato_program)/config/params.yaml" />
+
+    <node pkg="kato_program" type="global_labeled_pointcloud" name="global_labeled_pointcloud" output="screen"/>
+    <rosparam command="load" file="$(find kato_program)/config/params.yaml" />
+</launch>

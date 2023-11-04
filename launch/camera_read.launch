@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="kato_program" type="camera_read" name="camera_read" output="screen"/>
+    <rosparam command="load" file="$(find kato_program)/config/params.yaml" />
+</launch>
